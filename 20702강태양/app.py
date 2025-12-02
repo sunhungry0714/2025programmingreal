@@ -4,6 +4,7 @@ from datetime import datetime
 import pandas as pd
 from pathlib import Path
 import requests
+import os
 
 # 페이지 설정
 st.set_page_config(
@@ -12,14 +13,43 @@ st.set_page_config(
     layout="wide"
 )
 
-# 데이터 파일 경로
-DATA_FILE = Path("data/motorsports.json")
+# 데이터 파일 경로 - 여러 경로 시도
+def get_data_file():
+    """데이터 파일 경로 찾기 (배포 환경 대응)"""
+    # 현재 스크립트 위치 기준
+    script_dir = Path(__file__).parent
+    possible_paths = [
+        script_dir / "data" / "motorsports.json",  # 스크립트 기준 상대 경로
+        Path("data/motorsports.json"),  # 현재 작업 디렉토리 기준
+        Path.cwd() / "data" / "motorsports.json",  # 명시적 현재 디렉토리
+    ]
+    
+    for path in possible_paths:
+        if path.exists():
+            return path
+    
+    # 파일을 찾지 못한 경우 첫 번째 경로 반환 (에러 메시지용)
+    return possible_paths[0]
+
+DATA_FILE = get_data_file()
 
 def load_data():
     """데이터 파일 로드"""
     try:
+        # 파일 존재 여부 확인
         if not DATA_FILE.exists():
+            # 디버깅 정보 (개발 환경에서만 표시)
+            import sys
+            debug_info = f"""
+            **디버깅 정보:**
+            - 현재 작업 디렉토리: `{os.getcwd()}`
+            - 스크립트 위치: `{Path(__file__).parent}`
+            - 찾는 파일 경로: `{DATA_FILE}`
+            - 파일 존재 여부: {DATA_FILE.exists()}
+            """
             st.warning("⚠️ 데이터 파일을 찾을 수 없습니다. 관리자에게 문의하세요.")
+            with st.expander("🔍 디버깅 정보 보기"):
+                st.code(debug_info)
             return {"motorsports": []}
         
         with open(DATA_FILE, 'r', encoding='utf-8') as f:
