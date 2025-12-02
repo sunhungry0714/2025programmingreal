@@ -9,7 +9,123 @@
         "instagram": "https://www.instagram.com/f1/",
         "twitter": "https://twitter.com/F1"
       },
-      "schedule": [],
+      "schedule": [
+        {
+          "date": "2025-03-02",
+          "event": "Bahrain Grand Prix",
+          "location": "Sakhir, Bahrain"
+        },
+        {
+          "date": "2025-03-09",
+          "event": "Saudi Arabian Grand Prix",
+          "location": "Jeddah, Saudi Arabia"
+        },
+        {
+          "date": "2025-03-23",
+          "event": "Australian Grand Prix",
+          "location": "Melbourne, Australia"
+        },
+        {
+          "date": "2025-04-13",
+          "event": "Japanese Grand Prix",
+          "location": "Suzuka, Japan"
+        },
+        {
+          "date": "2025-04-20",
+          "event": "Chinese Grand Prix",
+          "location": "Shanghai, China"
+        },
+        {
+          "date": "2025-05-04",
+          "event": "Miami Grand Prix",
+          "location": "Miami, USA"
+        },
+        {
+          "date": "2025-05-18",
+          "event": "Emilia Romagna Grand Prix",
+          "location": "Imola, Italy"
+        },
+        {
+          "date": "2025-05-25",
+          "event": "Monaco Grand Prix",
+          "location": "Monte Carlo, Monaco"
+        },
+        {
+          "date": "2025-06-08",
+          "event": "Spanish Grand Prix",
+          "location": "Barcelona, Spain"
+        },
+        {
+          "date": "2025-06-22",
+          "event": "Canadian Grand Prix",
+          "location": "Montreal, Canada"
+        },
+        {
+          "date": "2025-06-29",
+          "event": "Austrian Grand Prix",
+          "location": "Spielberg, Austria"
+        },
+        {
+          "date": "2025-07-06",
+          "event": "British Grand Prix",
+          "location": "Silverstone, UK"
+        },
+        {
+          "date": "2025-07-27",
+          "event": "Hungarian Grand Prix",
+          "location": "Budapest, Hungary"
+        },
+        {
+          "date": "2025-08-03",
+          "event": "Belgian Grand Prix",
+          "location": "Spa-Francorchamps, Belgium"
+        },
+        {
+          "date": "2025-08-31",
+          "event": "Dutch Grand Prix",
+          "location": "Zandvoort, Netherlands"
+        },
+        {
+          "date": "2025-09-07",
+          "event": "Italian Grand Prix",
+          "location": "Monza, Italy"
+        },
+        {
+          "date": "2025-09-21",
+          "event": "Azerbaijan Grand Prix",
+          "location": "Baku, Azerbaijan"
+        },
+        {
+          "date": "2025-10-05",
+          "event": "Singapore Grand Prix",
+          "location": "Singapore"
+        },
+        {
+          "date": "2025-10-19",
+          "event": "United States Grand Prix",
+          "location": "Austin, USA"
+        },
+        {
+          "date": "2025-10-26",
+          "event": "Mexico City Grand Prix",
+          "location": "Mexico City, Mexico"
+        },
+        {
+          "date": "2025-11-09",
+          "event": "São Paulo Grand Prix",
+          "location": "São Paulo, Brazil"
+        },
+        {
+          "date": "2025-11-22",
+          "event": "Qatar Grand Prix",
+          "location": "Lusail, Qatar"
+        },
+        {
+          "date": "2025-12-07",
+          "event": "Abu Dhabi Grand Prix",
+          "location": "Yas Marina, UAE"
+        }
+      ],
       "results": [],
       "driver_championship": [
         {

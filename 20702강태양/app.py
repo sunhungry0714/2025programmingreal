@@ -4,7 +4,6 @@ from datetime import datetime
 import pandas as pd
 from pathlib import Path
 import requests
-import time
 
 # 페이지 설정
 st.set_page_config(
@@ -116,62 +115,6 @@ def fetch_f1_results(year=None):
         st.error(f"❌ F1 결과 가져오기 실패: {str(e)}")
         return []
 
-def update_f1_data():
-    """F1 데이터를 자동으로 업데이트"""
-    try:
-        # 현재 데이터 로드
-        data = load_data()
-        motorsports_list = data.get("motorsports", [])
-        
-        # F1 데이터 찾기
-        f1_index = None
-        for i, ms in enumerate(motorsports_list):
-            if ms.get("id") == "f1":
-                f1_index = i
-                break
-        
-        if f1_index is None:
-            st.warning("⚠️ F1 데이터를 찾을 수 없습니다.")
-            return False
-        
-        # 진행 상황 표시
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-        
-        # 일정 업데이트
-        status_text.text("📅 경기 일정을 가져오는 중...")
-        progress_bar.progress(25)
-        schedule = fetch_f1_schedule()
-        
-        # 결과 업데이트
-        status_text.text("🏆 경기 결과를 가져오는 중...")
-        progress_bar.progress(50)
-        results = fetch_f1_results()
-        
-        # 데이터 업데이트
-        status_text.text("💾 데이터를 저장하는 중...")
-        progress_bar.progress(75)
-        
-        motorsports_list[f1_index]["schedule"] = schedule
-        motorsports_list[f1_index]["results"] = results
-        
-        data["motorsports"] = motorsports_list
-        
-        if save_data(data):
-            progress_bar.progress(100)
-            status_text.text("✅ 업데이트 완료!")
-            time.sleep(1)
-            progress_bar.empty()
-            status_text.empty()
-            st.success("✅ F1 데이터가 성공적으로 업데이트되었습니다!")
-            st.rerun()  # 페이지 새로고침
-            return True
-        else:
-            return False
-            
-    except Exception as e:
-        st.error(f"❌ 업데이트 중 오류가 발생했습니다: {str(e)}")
-        return False
 
 def format_date(date_str):
     """날짜 문자열을 포맷팅"""
@@ -358,18 +301,6 @@ def main():
     # 타이틀
     st.title("🏎️ 모터스포츠 정보 센터")
     
-    # 자동 업데이트 버튼 (사이드바에 추가)
-    with st.sidebar:
-        st.header("⚙️ 관리")
-        st.markdown("---")
-        
-        if st.button("🔄 F1 데이터 자동 업데이트", type="primary", use_container_width=True):
-            with st.spinner("데이터를 업데이트하는 중..."):
-                update_f1_data()
-        
-        st.markdown("---")
-        st.caption("💡 자동 업데이트 버튼을 클릭하면 최신 F1 경기 일정과 결과를 가져옵니다.")
-    
     st.markdown("---")
     
     # 데이터 로드
@@ -463,7 +394,7 @@ def main():
     st.markdown("---")
     st.markdown(
         "<div style='text-align: center; color: gray;'>"
-        "모터스포츠 정보 센터 | 자동 업데이트 기능 사용 가능"
+        "모터스포츠 정보 센터"
         "</div>",
         unsafe_allow_html=True
     )
